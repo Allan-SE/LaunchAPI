@@ -5,13 +5,13 @@ import pandas as pd
 import xlsxwriter
 import json
 
-class Access_API:
+class Access_API: # Classe para realizar operações RESTful
     def __init__(self):
-        api_url = "https://api.spacexdata.com/v3/launches"
+        api_url = "https://api.spacexdata.com/v3/launches" 
         response = requests.get(api_url)
-        self.result = response.json()
+        self.result = response.json() 
             
-class Data_SRC:
+class Data_SRC: # Classe para Data Access Object
     def __init__(self):
         access_api = Access_API()
         dateframe = pd.json_normalize(access_api.result)
@@ -30,10 +30,9 @@ class Data_SRC:
         total_launch =  self.result.loc[( self.result['launch_year'] > '2018') & ( self.result['launch_year'] < '2022' )].count()
         return(total_launch['flight_number'])#Total de lançamentos entre 19-21
 
-class Create_XLSX:
-
+class Create_XLSX: #Classe para criação do arquivo EXCEL
     def __init__(self):
-        select_data = Data_SRC()
+        select_data = Data_SRC() #In
         workbook = xlsxwriter.Workbook('Expenses01.xlsx')
         worksheet = workbook.add_worksheet()
 
