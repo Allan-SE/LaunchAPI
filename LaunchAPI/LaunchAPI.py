@@ -3,7 +3,6 @@ from numpy import row_stack, select
 import requests
 import pandas as pd
 import xlsxwriter
-import json
 
 class Access_API: # Classe para realizar operações RESTful
     def __init__(self):
