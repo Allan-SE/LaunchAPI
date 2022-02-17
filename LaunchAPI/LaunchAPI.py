@@ -10,14 +10,14 @@ class Access_API: # Class to do RESTful operations
         response = requests.get(api_url)
         self.result = response.json() 
             
-class Data_SRC: #Use to RESTful operations
+class Data_SRC: #Use like Data Access Object
     def __init__(self):
         access_api = Access_API()
         dateframe = pd.json_normalize(access_api.result) #This is a Nested JSON
         dateframe.columns = dateframe.columns.map(lambda x: x.split(".")[-1])
         self.result = dateframe
 
-    def frequentlyYear(self): #Anos com mais #Years that most appear
+    def frequentlyYear(self): #Years that most appear
         year_most_frequently = self.result['launch_year'].value_counts().idxmax()
         return(year_most_frequently)
 
