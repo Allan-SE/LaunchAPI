@@ -57,7 +57,7 @@ class Create_XLSX: #Create an Excel file
 
         workbook.close()
 
-class Front_End:
+class Front_End: #Create a FrontEnd View
     def __init__(self):
         app = QApplication(sys.argv)
         widget = QWidget()
