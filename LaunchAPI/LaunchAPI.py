@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import xlsxwriter
 
-class Access_API: # Classe para realizar operações RESTful
+class Access_API: # Class to do RESTful operations
     def __init__(self):
         api_url = "https://api.spacexdata.com/v3/launches" 
         response = requests.get(api_url)
@@ -17,21 +17,21 @@ class Data_SRC: #Use to RESTful operations
         dateframe.columns = dateframe.columns.map(lambda x: x.split(".")[-1])
         self.result = dateframe
 
-    def frequentlyYear(self): #Anos com mais 
-        year_most_frequently = self.result['launch_year'].value_counts().idxmax() #Anos que mais aparecem
+    def frequentlyYear(self): #Anos com mais #Years that most appear
+        year_most_frequently = self.result['launch_year'].value_counts().idxmax()
         return(year_most_frequently)
 
-    def launcSite(self): #Local de Lançamento com mais lançamentos
-        launch_site =  self.result['site_name_long'].value_counts().idxmax() #Launch_Site com mais lançamentos
+    def launcSite(self): #Launch site with most launchs
+        launch_site =  self.result['site_name_long'].value_counts().idxmax()
         return str(launch_site)
     
-    def totalLaunch(self):
+    def totalLaunch(self): #Total of Launchs between 19-21
         total_launch =  self.result.loc[( self.result['launch_year'] > '2018') & ( self.result['launch_year'] < '2022' )].count()
-        return(total_launch['flight_number'])#Total de lançamentos entre 19-21
+        return(total_launch['flight_number'])
 
-class Create_XLSX: #Classe para criação do arquivo EXCEL
+class Create_XLSX: #Create an Excel file
     def __init__(self):
-        select_data = Data_SRC() #Instance the class
+        select_data = Data_SRC()
         workbook = xlsxwriter.Workbook('Expenses01.xlsx')
         worksheet = workbook.add_worksheet()
 
