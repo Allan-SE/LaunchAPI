@@ -1,8 +1,14 @@
+from collections import namedtuple
 from re import T
-from numpy import row_stack, select
+from numpy import can_cast, row_stack, select
 import requests
 import pandas as pd
 import xlsxwriter
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import sys
+from PyQt5.QtWidgets import QMessageBox
 
 class Access_API: # Class to do RESTful operations
     def __init__(self):
@@ -51,4 +57,35 @@ class Create_XLSX: #Create an Excel file
 
         workbook.close()
 
-create_file = Create_XLSX()
+class Front_End:
+    def __init__(self):
+        app = QApplication(sys.argv)
+        widget = QWidget()
+        self.app = QApplication(sys.argv)
+        self.widget = QWidget()
+        button1 = QPushButton(widget)
+        button1.setText("Generate File")
+        button1.move(113,66)
+        button1.clicked.connect(self.actionButton)       
+        
+        widget.setGeometry(50,50,320,200)
+        widget.setWindowTitle("Launch App")
+        widget.show()
+        sys.exit(app.exec_())
+
+    def actionButton(self):
+        Create_XLSX().__init__
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        
+        msg.setText("Excel File")
+        msg.setInformativeText("'The file was generated with Success!'")
+        msg.setWindowTitle("Information!")
+        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        msg.buttonClicked.connect(self.closeApp) 
+        msg.exec_()
+        
+    def closeApp(self):
+        sys.exit()
+
+generate_app = Front_End()
