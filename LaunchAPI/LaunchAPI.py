@@ -13,7 +13,7 @@ class Access_API: # Classe para realizar operações RESTful
 class Data_SRC: # Classe para Data Access Object
     def __init__(self):
         access_api = Access_API()
-        dateframe = pd.json_normalize(access_api.result)
+        dateframe = pd.json_normalize(access_api.result) # This is a Nested JSON
         dateframe.columns = dateframe.columns.map(lambda x: x.split(".")[-1])
         self.result = dateframe
 
@@ -31,7 +31,7 @@ class Data_SRC: # Classe para Data Access Object
 
 class Create_XLSX: #Classe para criação do arquivo EXCEL
     def __init__(self):
-        select_data = Data_SRC() #In
+        select_data = Data_SRC() #Instance the class
         workbook = xlsxwriter.Workbook('Expenses01.xlsx')
         worksheet = workbook.add_worksheet()
 
