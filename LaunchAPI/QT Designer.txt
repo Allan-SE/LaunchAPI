@@ -1,0 +1,1 @@
+Gerar Imagem QT Designer pyuic5 -o <file>.py <file>.ui
