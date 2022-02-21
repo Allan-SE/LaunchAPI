@@ -1,4 +1,4 @@
-Qual a finalidade da ferramenta:
+Finalidade da ferramenta:
 A aplicação foi desenvolvida com o intuito de extrair 3 informações especificas de uma API com informações sobre lançamentos da SpaceX e compartilhar através de um arquivo excel com o usuário. As informações são:
 
 - Qual o ano onde houve mais lançamentos?
