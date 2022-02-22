@@ -1,3 +1,5 @@
+from time import time
+from turtle import update
 import requests
 import pandas as pd
 import sys
@@ -43,6 +45,7 @@ class Create_XLSX: #Create an Excel file
         df = pd.DataFrame.from_dict(data_file)
         df.to_excel(fullname ,index = False)
 
+
 class Front_End: #Create a FrontEnd View
     def __init__(self):
         app = QApplication(sys.argv)
@@ -84,7 +87,7 @@ class Ui_Dialog(object): # Generate FronEnd View
         self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setText("")
         self.label_3.setTextFormat(QtCore.Qt.PlainText)
-        self.label_3.setPixmap(QtGui.QPixmap("images/icon.png"))
+        self.label_3.setPixmap(QtGui.QPixmap("icon.png"))
         self.label_3.setScaledContents(True)
         self.label_3.setObjectName("label_3")
         self.pushButton_2 = QtWidgets.QPushButton(Dialog)
@@ -95,7 +98,7 @@ class Ui_Dialog(object): # Generate FronEnd View
         self.label_4.setGeometry(QtCore.QRect(224, 20, 129, 81))
         self.label_4.setText("")
         self.label_4.setTextFormat(QtCore.Qt.PlainText)
-        self.label_4.setPixmap(QtGui.QPixmap("images/space-X.png"))
+        self.label_4.setPixmap(QtGui.QPixmap("space-X.png"))
         self.label_4.setScaledContents(True)
         self.label_4.setObjectName("label_4")
         self.textEdit_2 = QtWidgets.QTextEdit(Dialog)
@@ -114,7 +117,6 @@ class Ui_Dialog(object): # Generate FronEnd View
         self.label_4.raise_()
         self.textEdit_2.raise_()
         self.msg = QMessageBox()
-        #self.progressBar.raise_()
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -131,7 +133,35 @@ class Ui_Dialog(object): # Generate FronEnd View
             self.msg.setWindowTitle("Information")
             self.msg.exec_()
         else:
+            self.textEdit.hide()
+            self.pushButton.hide()
+            self.label_2.hide()
+            self.pushButton_2.hide()
+            self.textEdit_2.hide()
+
+            self.label.setGeometry(QtCore.QRect(190, 100, 150, 100))
+            self.label.setText("Loading...")
+
+            self.label.setFont(QtGui.QFont('Arial', 20))
+
+            QApplication.processEvents()
+
             Create_XLSX(directory ,filename).__init__
+            self.msg.setIcon(QMessageBox.Information)
+            self.msg.setText("File created sucessfully")
+            self.msg.setWindowTitle("Information")
+            self.msg.exec_()
+
+            self.label.setGeometry(QtCore.QRect(40, 160, 61, 31))
+            self.label.setText("File Name")
+            self.label.setFont(QtGui.QFont())
+
+            self.textEdit.show()
+            self.pushButton.show()
+            self.label_2.show()
+            self.pushButton_2.show()
+            self.textEdit_2.show()
+            QApplication.processEvents()
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
