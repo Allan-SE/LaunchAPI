@@ -11,7 +11,7 @@ https://docs.spacexdata.com/
 
 Como usar  aplicação LaunchApp:
  
-1. Faça o download em algum repositório na sua máquina local do LaunchApp.exe e images na pasta 'dist'
+1. Faça o download em algum repositório na sua máquina local do LaunchApp.exe e images no diretório LaunchAPI --> dist
 2. Clique duas vezes sobre o arquivo.
 3. Preencha o Diretório onde deseja salvar e o nome do arquivo.
 4. Clicar em "Generate File".
