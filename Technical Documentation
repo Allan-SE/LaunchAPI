@@ -1,0 +1,29 @@
+Technical Documentation:
+
+Classes:
+  -Acess_API
+  -Data_SRC
+  -Create_XLSX
+  -Front_End
+  -Ui_Dialog
+  
+  Access_API --> Responsável pelas operações REST. No caso desta primeira versão, a única operação é GET, porém, para quaquer expansão para outras operações, deve-se utilizar está classe.
+  
+  Data_SRC --> Classe é utilizada como Data Access Object. Após ter o JSON normalized, qualquer extração de informações especificas nos dados deve ser feita nesta classe. Seus métodos são:
+      - frequentlyYear() --> Ano com mais lançamentos
+      - launcSite() --> Local com mais lançamentos 
+      - totalLaunch() --> Total de lançamentos entre 2019 e 2021
+      
+Create_XLSX --> Classe utilizada exclusivamente para geração de arquivo externo, no caso , uma planilha excel. Qualquer exportação de dados para o usuário deve ser utilizada essa classe.
+
+Front_End --> Classe criada com o UNICO objetivo de instaciar classes para geração do Front_End
+
+Ui_Dialog --> Classe que tem a responsabilidade guardar os objetos referentes a View do usuário. Qualquer inserção de objeto, ação, etc, deve ser mantida nesta classe. Seus métodos de ação são:
+      - browserPath() --> Gerar explorador de arquivos para usuário encontrar um diretório
+      - generateFile() --> Responsável por chamar a classe responsável por instanciar Create_XLSX, após interação do usuário com o botão "Generate File".
+      - retranslateUi() --> Rensável pela nomeclatura de objetos de tela.
+      
+      
+A única chamada direta no programa principal é generate_app = Front_End(), responsável por instanciar o método para gerar a aplicação.
+      
+ 
